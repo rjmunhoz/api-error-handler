@@ -8,11 +8,11 @@ var handler = require('..');
 
 describe('API Error Handler', function () {
   it('5xx', function (done) {
-    var app = express();
+    const app = express();
     app.use(function (req, res, next) {
       next(error(501, 'lol'));
     });
-    app.use(handler());
+    app.use(handler({log: false}));
 
     request(app.listen())
     .get('/')
@@ -20,7 +20,7 @@ describe('API Error Handler', function () {
     .end(function (err, res) {
       assert.ifError(err);
 
-      var body = res.body;
+      const body = res.body;
       assert.equal(body.message, 'Not Implemented');
       assert.equal(body.status, 501);
       done();
@@ -28,14 +28,14 @@ describe('API Error Handler', function () {
   })
 
   it('4xx', function (done) {
-    var app = express();
+    const app = express();
     app.use(function (req, res, next) {
       next(error(401, 'lol', {
         type: 'a',
         code: 'b'
       }));
     });
-    app.use(handler());
+    app.use(handler({log: false}));
 
     request(app.listen())
     .get('/')
@@ -43,12 +43,32 @@ describe('API Error Handler', function () {
     .end(function (err, res) {
       assert.ifError(err);
 
-      var body = res.body;
+      const body = res.body;
       assert.equal(body.message, 'lol');
       assert.equal(body.status, 401);
       assert.equal(body.type, 'a');
       assert.equal(body.code, 'b');
       done();
+    })
+  })
+
+  it('Extra params', function(done) {
+    const app = express()
+    const extra = {testing: 'hey! it worked!'}
+    app.use(function(req, res, next) {
+      next(error(400, 'testing this', {extra}))
+    })
+    app.use(handler({log: false}))
+
+    request(app.listen())
+    .get('/')
+    .expect(400)
+    .end(function (err, res) {
+      assert.ifError(err)
+
+      const body = res.body
+      assert.equal(body.testing, extra.testing)
+      done()
     })
   })
 })
