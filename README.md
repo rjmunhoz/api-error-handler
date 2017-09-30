@@ -1,14 +1,17 @@
 
-# api-error-handler
+# api-error-handler-revived
 
 Forked from [api-error-handler](https://github.com/expressjs/api-error-handler) since there were unmerged 2016 pull requests
 
 An error handler for JSON APIs, meant to be used with [http-errors](https://github.com/jshttp/http-errors)-style errors.
 
+## Installation
+`npm i api-error-handler-revived`
+
 ## Example
 
 ```js
-var errorHandler = require('api-error-handler');
+var errorHandler = require('api-error-handler-revived');
 
 var api = new express.Router();
 api.get('/users/:userid', function (req, res, next) {
