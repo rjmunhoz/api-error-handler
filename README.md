@@ -51,7 +51,7 @@ Properties exposed are:
 - `name`
 - `code`
 - `status`
-- `extras` properties
+- `extra` properties
 
 5xx errors are, by default, not exposed to the client.
 Instead, they are given a generic `message` as well as the `type`.
