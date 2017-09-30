@@ -2,7 +2,7 @@
   "name": "api-error-handler",
   "description": "Express error handlers for JSON APIs",
   "version": "1.0.1",
-  "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
+  "author": "Rogério Munhoz (http://t.me/rjmunhoz)",
   "license": "MIT",
   "repository": "expressjs/api-error-handler",
   "dependencies": {
