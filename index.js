@@ -1,9 +1,7 @@
 
 var statuses = require('statuses');
 
-var production = process.env.NODE_ENV === 'production';
-
-module.exports = function () {
+module.exports = function ({stack = true, log = true, suppressServer = true} = {}) {
   return function apiErrorHandler(err, req, res, next) {
     var status = err.status || err.statusCode || 500;
     if (status < 400) status = 500;
@@ -13,13 +11,12 @@ module.exports = function () {
       status: status
     };
 
-    // show the stacktrace when not in production
-    // TODO: make this an option
-    if (!production) body.stack = err.stack;
+    // show the stacktrace when not suppressed by stack option
+    if (stack) body.stack = err.stack;
 
     // internal server errors
-    if (status >= 500) {
-      console.error(err.stack);
+    if (status >= 500 && suppressServer) {
+      if (log === true || log === 'server') console.error(err.stack);
       body.message = statuses[status];
       res.json(body);
       return;
@@ -31,6 +28,11 @@ module.exports = function () {
     if (err.code) body.code = err.code;
     if (err.name) body.name = err.name;
     if (err.type) body.type = err.type;
+
+    // extra params
+    if (err.extra) Object.assign(body, err.extra)
+
+    if (log) console.error(err)
 
     res.json(body);
   }
