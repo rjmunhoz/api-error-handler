@@ -4,7 +4,7 @@
   "version": "1.0.4",
   "author": "Rogério Munhoz (http://t.me/rjmunhoz)",
   "license": "MIT",
-  "repository": "expressjs/api-error-handler",
+  "repository": "rjmunhoz/api-error-handler-revived",
   "dependencies": {
     "statuses": "^1.2.0"
   },
