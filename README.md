@@ -1,6 +1,8 @@
 
 # api-error-handler-revived
 
+[![NPM](https://nodei.co/npm/api-error-handler-revived.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/api-error-handler-revived/) [![NPM](https://nodei.co/npm-dl/api-error-handler-revived.png?months=1)](https://nodei.co/npm/api-error-handler-revived/)
+
 Forked from [api-error-handler](https://github.com/expressjs/api-error-handler) since there were unmerged 2016 pull requests
 
 An error handler for JSON APIs, meant to be used with [http-errors](https://github.com/jshttp/http-errors)-style errors.
