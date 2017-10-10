@@ -1,10 +1,10 @@
 {
   "name": "api-error-handler-revived",
   "description": "Express error handlers for JSON APIs",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Rogério Munhoz (http://t.me/rjmunhoz)",
   "license": "MIT",
-  "repository": "expressjs/api-error-handler",
+  "repository": "rjmunhoz/api-error-handler-revived",
   "dependencies": {
     "statuses": "^1.2.0"
   },
